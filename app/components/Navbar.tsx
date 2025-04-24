@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Logo from '../../public/logo.png';
 function Navbar() {
     return (
-        <div className='flex justify-between items-center px-[5rem] py-5'>
+<div className='flex justify-between items-center px-[5rem] py-5 z-50 relative'>
             <div className='flex justify-center items-center gap-8'>
             <div className="flex justify-center items-center gap-2">
                 <Image src={Logo} alt="Logo" width={40} height={40} />
