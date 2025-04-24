@@ -1,84 +1,71 @@
-Absolutely Bhoomi! Here's a **well-structured and professional `README.md`** for your Featured Jobs project, tailored for GitHub:
+# 💼 **Featured Jobs Portal**  
+*A modern job board built with Next.js 14 and TypeScript*
+
+> Explore featured job listings, view job details in a sleek modal, apply with validation, and track applications — all in one interactive UI.
 
 ---
 
-```markdown
-# 💼 Featured Jobs Portal - Next.js Application
+## ✨ **Features**
 
-A modern and interactive **job board** built with **Next.js 14 (App Router)** that allows users to explore featured job listings, view job details in a modal, apply for jobs, and track applied jobs using browser storage.
-
----
-
-## 🚀 Features
-
-- 🔥 **Featured Jobs Section** with dynamic routing
-- 🧩 **Modal popup** to view job details and apply
-- 📝 **Application form** with Yup + Formik validation
-- 📦 **Persist applied jobs** using `localStorage`
-- 🏷️ **Applied Jobs Page** with status tag
+- 🔥 Featured Jobs with dynamic modal routing
+- 💬 Job Details + Application Form in Modal
+- 🧾 Formik + Yup for smooth form validation
+- 💾 Persist applied jobs in `localStorage`
+- 🏷️ “Applied” tag on previously applied jobs
 - 🌐 Fully responsive UI with **Tailwind CSS**
-- 📡 API handling with **Axios** or **RTK Query**
-- ⚙️ Built using **TypeScript** for type safety
+- ⚙️ SSR/SSG support using **Next.js App Router**
+- 🧩 API integration using **Axios** or **RTK Query**
+- 🔒 Built with **TypeScript** for type safety
 
 ---
 
-## 🧱 Tech Stack
+## 🛠️ **Tech Stack**
 
-| Technology       | Purpose                          |
-|------------------|----------------------------------|
-| **Next.js 14**    | App router, SSR/SSG              |
-| **TypeScript**    | Static typing                    |
-| **Tailwind CSS**  | Modern utility-first styling     |
-| **Formik + Yup**  | Form handling & validation       |
-| **Context API** / **Redux** | State management     |
-| **Axios** / **RTK Query**   | API requests         |
-| **localStorage**  | Store applied jobs persistently  |
+| Technology         | Purpose                            |
+|--------------------|------------------------------------|
+| **Next.js 14**     | Routing, SSR, SSG (App Router)     |
+| **TypeScript**     | Static typing                      |
+| **Tailwind CSS**   | Utility-first modern styling       |
+| **Formik + Yup**   | Form handling and validation       |
+| **Context API / Redux** | State management             |
+| **Axios / RTK Query**   | API communication            |
+| **localStorage**   | Client-side persistence            |
 
 ---
 
-## 📁 Project Structure
+## 📁 **Project Structure**
 
 ```
 /app
-  ├── jobs/
-  │   └── page.tsx             # Displays featured jobs
-  │   └── [id]/page.tsx        # Modal with job details
-  ├── applied/
-  │   └── page.tsx             # List of applied jobs
+ ├── jobs/                  # Featured job listings
+ │   ├── page.tsx           # Grid of jobs
+ │   └── [id]/page.tsx      # Modal details (SSR route)
+ ├── applied/               # Applied jobs page
+ │   └── page.tsx
 /components
-  ├── JobCard.tsx              # Card layout for jobs
-  ├── JobModal.tsx             # Job details + form modal
-  ├── AppliedTag.tsx           # Tag showing "Applied"
-  ├── Layout.tsx               # Common layout
+ ├── JobCard.tsx            # Featured job UI
+ ├── JobModal.tsx           # Modal + Application Form
+ ├── AppliedTag.tsx         # “Applied” label component
+ └── Layout.tsx             # Common layout
 /utils
-  └── storage.ts               # localStorage utilities
+ └── storage.ts             # localStorage utilities
 ```
 
 ---
 
-## 🧠 Storage Behavior
+## 🧠 **Smart Storage with Expiry**
 
-### `localStorage` vs `sessionStorage`
-
-- `localStorage`: Data persists even after closing the tab/browser.
-- `sessionStorage`: Data is cleared when the tab is closed.
-
-> ⚠️ Neither of them expires automatically. You can implement manual expiry as shown below:
-
-### ✅ Custom Expiry Example
+Want to automatically expire old applications? Here's a sample implementation:
 
 ```ts
-// Set data with expiry
+// Set with expiry
 export const setWithExpiry = (key: string, value: any, ttl: number) => {
   const now = new Date();
-  const item = {
-    value,
-    expiry: now.getTime() + ttl, // Time to live in ms
-  };
+  const item = { value, expiry: now.getTime() + ttl };
   localStorage.setItem(key, JSON.stringify(item));
 };
 
-// Get data with expiry check
+// Get with expiry check
 export const getWithExpiry = (key: string) => {
   const itemStr = localStorage.getItem(key);
   if (!itemStr) return null;
@@ -88,81 +75,65 @@ export const getWithExpiry = (key: string) => {
     localStorage.removeItem(key);
     return null;
   }
-
   return item.value;
 };
 ```
 
 ---
 
-## 🛠️ Getting Started
+## 🚀 **Getting Started**
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-username/featured-jobs.git
-   cd featured-jobs
-   ```
+```bash
+# 1. Clone the repo
+git clone https://github.com/your-username/featured-jobs.git
+cd featured-jobs
 
-2. **Install Dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+# 2. Install dependencies
+npm install # or yarn
 
-3. **Run the App**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+# 3. Run the dev server
+npm run dev # or yarn dev
 
-4. **Visit in Browser**
-   ```
-   http://localhost:3000
-   ```
-
----
-
-## 📸 Preview
-
-> _Include screenshots or a short GIF here showing job cards, modal, and applied jobs page._
-
----
-
-## 🛣 Future Enhancements
-
-- 🌍 Integrate real-time jobs from an API
-- 🔐 Add user authentication (NextAuth or Firebase)
-- 🔍 Implement job filters, search, and categories
-- 📧 Email notification on successful application
-- 📈 Dashboard to track applied jobs
-
----
-
-## 👩‍💻 About the Developer
-
-**Bhoomi Shakya**  
-🎓 B.Tech in AIML @ GLA University  
-💻 Full-Stack Developer | React | Node.js | MongoDB | MySQL  
-🎨 UI/UX Explorer | Illustrator | AI Enthusiast  
-🏆 450+ LeetCode problems | Hackathon Winner | Built apps with GPT-4, LangChain, Hugging Face  
-
-[Portfolio](#) • [LinkedIn](#) • [GitHub](#)
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**. Feel free to use, contribute, and modify.
-
+# 4. Visit the app
+http://localhost:3000
 ```
 
 ---
 
-Let me know if you'd like me to:
-- Add screenshot placeholders
-- Generate a logo/banner for the top of the README
-- Link to your portfolio/socials directly
+## 🖼️ **Live Preview**
 
-I can also convert this into a styled markdown file for GitHub Pages or Notion if you want something visual!
+> Add a few screenshots or a quick GIF showing:
+> - Job cards grid
+> - Modal with form
+> - Applied tag in the Applied Jobs page
+
+---
+
+## 🌱 **Planned Enhancements**
+
+- 🌍 Real job data from public APIs
+- 🔐 Authentication via NextAuth or Firebase
+- 🔍 Search and filtering for job categories
+- 📧 Email confirmation on application
+- 📊 Analytics dashboard for tracking jobs
+
+---
+
+## 👩‍💻 **About the Developer**
+
+**Bhoomi Shakya**  
+🎓 B.Tech in AIML @ GLA University  
+🛠️ Full-Stack Developer | React | Node.js | MongoDB | MySQL  
+🎨 UI/UX Explorer | Illustrator | AI Enthusiast  
+🏆 450+ LeetCode Problems Solved | Hackathon Winner  
+
+🔗 [Portfolio](#) • [LinkedIn](#) • [GitHub](#)
+
+---
+
+## 📜 **License**
+
+Licensed under the MIT License.  
+Feel free to use, share, and improve this project. 🚀
+
+---
