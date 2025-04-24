@@ -13,7 +13,7 @@ const Hero = () => {
     const [jobKeyword, setJobKeyword] = useState('');
     const [location, setLocation] = useState('');
 
-    const handleSearch = async (e) => {
+    const handleSearch = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         try {
