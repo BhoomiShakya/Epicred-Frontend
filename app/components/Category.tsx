@@ -26,7 +26,6 @@ const categories = [
 function Category() {
   return (
     <div className="px-8 md:px-16 py-12">
-      {/* Top Bar */}
       <div className="flex justify-between items-center mb-10 lg:mx-[5rem]">
         <h1 className="text-3xl md:text-4xl font-bold text-[#25324B]">
           Explore by <span className="text-[#26A4FF]">category</span>
@@ -37,7 +36,6 @@ function Category() {
         </div>
       </div>
 
-      {/* Grid Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-[1rem] lg:mx-[5rem]">
         {categories.map((cat, i) => (
           <div
