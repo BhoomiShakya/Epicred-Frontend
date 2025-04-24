@@ -8,6 +8,7 @@ import c5 from '../../public/companyLogo/5.png'
 
 
 function FeaturedCompany() {
+  
   return (
     <div className='flex flex-col mx-4 lg:mx-[9rem] pb-[3rem] '>
         <p className='text-[#7C8493]  font-sm pb-4'>Companies we helped grow</p>

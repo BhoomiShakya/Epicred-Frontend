@@ -32,8 +32,6 @@ function Footer() {
                             <li>Privacy Policy</li>
                         </ul>
                     </div>
-
-                    {/* Resources */}
                     <div>
                         <h3 className="font-semibold text-md mb-3">Resources</h3>
                         <ul className="space-y-5 text-md text-[#C4C4C4]">
@@ -43,8 +41,6 @@ function Footer() {
                             <li>Contact Us</li>
                         </ul>
                     </div>
-
-                    {/* Newsletter */}
                     <div className="max-w-xs">
                         <h3 className="font-semibold text-md mb-3">Get job notifications</h3>
                         <p className="text-md text-[#C4C4C4] mb-3">
