@@ -74,7 +74,6 @@ const Hero = () => {
                                 />
                             </div>
 
-                            {/* Location Select */}
                             <div className="flex items-center gap-4 border-b border-[#D6DDEB] flex-1 w-full">
                                 <Image src={Location} alt="Location" className="w-6 h-6" />
                                 <select
@@ -92,7 +91,6 @@ const Hero = () => {
                                 </select>
                             </div>
 
-                            {/* Search Button */}
                             <button
                                 type="submit"
                                 className="bg-[#4640DE] text-white px-6 py-3 font-semibold text-lg w-full md:w-auto"
@@ -108,7 +106,6 @@ const Hero = () => {
                     </p>
                 </div>
 
-                {/* Right Side Image (Hidden on Mobile & Tab) */}
                 <div className="hidden lg:flex flex-1">
                     <Image
                         src={Man}

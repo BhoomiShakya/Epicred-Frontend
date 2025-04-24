@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Logo from '../../public/logo.png';
-import { Menu, X } from 'lucide-react'; // install lucide-react if needed
+import { Menu, X } from 'lucide-react'; 
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +28,9 @@ function Navbar() {
                 <div className="hidden lg:flex justify-between items-center gap-10 text-[#515B6F] text-md">
                     
                     <div className="flex items-center gap-4 font-bold">
-                        <button className="text-[#4640DE] px-4 py-2">Login</button>
+                        <button className="text-[#4640DE] px-4 py-2 cursor-pointer">Login</button>
                         <div className="h-6 w-px bg-[#D6DDEB]"></div>
-                        <button className="bg-[#4640DE] text-white px-4 py-2 rounded-md">Sign Up</button>
+                        <button className="bg-[#4640DE] text-white px-4 py-2 rounded-md cursor-pointer">Sign Up</button>
                     </div>
                 </div>
 
