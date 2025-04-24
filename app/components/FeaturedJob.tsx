@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { StaticImageData } from 'next/image';
 import arrow from '../../public/rightarrow.png';
 import img1 from '../../public/featuredCompany/1.png';
 import img2 from '../../public/featuredCompany/2.png';
@@ -13,6 +14,17 @@ import img7 from '../../public/featuredCompany/7.jpg';
 import img8 from '../../public/featuredCompany/8.png';
 import { FaTimes } from 'react-icons/fa';
 
+
+type Job = {
+  id: number;
+  companyLogo: StaticImageData;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  type: string;
+  tags: string[];
+};
 
 const jobs = [
   {
@@ -100,13 +112,15 @@ const jobs = [
 
 function FeaturedJob() {
 
-  const [selectedJob, setSelectedJob] = useState(null);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
 
   const handleApply = () => {
+    if (!selectedJob) return; // ✅ Ensure it's not null
+
     const updatedJobs = JSON.parse(localStorage.getItem("appliedJobs") || "[]");
-    const isAlreadyApplied = updatedJobs.some(job => job.id === selectedJob.id);
+    const isAlreadyApplied = updatedJobs.some((job: { id: number; }) => job.id === selectedJob.id);
     if (!isAlreadyApplied) {
       const newJobs = [...updatedJobs, selectedJob];
       localStorage.setItem("appliedJobs", JSON.stringify(newJobs));
@@ -117,7 +131,7 @@ function FeaturedJob() {
   };
   
 
-  const openModal = (job) => {
+  const openModal = (job: React.SetStateAction<Job | null>) => {
     setSelectedJob(job);
     setModalOpen(true);
   };

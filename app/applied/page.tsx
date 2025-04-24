@@ -6,8 +6,18 @@ import Image from 'next/image';
 import Pattern from '../../public/Pattern.png';
 import Navbar from '../components/Navbar';
 
+type Job = {
+  id: string;
+  companyLogo: string;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  type: string;
+};
+
 function page() {
-  const [appliedJobs, setAppliedJobs] = useState([]);
+const [appliedJobs, setAppliedJobs] = useState<Job[]>([]);
 
   useEffect(() => {
     const storedJobs = JSON.parse(localStorage.getItem("appliedJobs") || "[]");

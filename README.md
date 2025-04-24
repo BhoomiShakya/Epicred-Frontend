@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Absolutely Bhoomi! Here's a **well-structured and professional `README.md`** for your Featured Jobs project, tailored for GitHub:
 
-## Getting Started
+---
 
-First, run the development server:
+```markdown
+# 💼 Featured Jobs Portal - Next.js Application
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A modern and interactive **job board** built with **Next.js 14 (App Router)** that allows users to explore featured job listings, view job details in a modal, apply for jobs, and track applied jobs using browser storage.
+
+---
+
+## 🚀 Features
+
+- 🔥 **Featured Jobs Section** with dynamic routing
+- 🧩 **Modal popup** to view job details and apply
+- 📝 **Application form** with Yup + Formik validation
+- 📦 **Persist applied jobs** using `localStorage`
+- 🏷️ **Applied Jobs Page** with status tag
+- 🌐 Fully responsive UI with **Tailwind CSS**
+- 📡 API handling with **Axios** or **RTK Query**
+- ⚙️ Built using **TypeScript** for type safety
+
+---
+
+## 🧱 Tech Stack
+
+| Technology       | Purpose                          |
+|------------------|----------------------------------|
+| **Next.js 14**    | App router, SSR/SSG              |
+| **TypeScript**    | Static typing                    |
+| **Tailwind CSS**  | Modern utility-first styling     |
+| **Formik + Yup**  | Form handling & validation       |
+| **Context API** / **Redux** | State management     |
+| **Axios** / **RTK Query**   | API requests         |
+| **localStorage**  | Store applied jobs persistently  |
+
+---
+
+## 📁 Project Structure
+
+```
+/app
+  ├── jobs/
+  │   └── page.tsx             # Displays featured jobs
+  │   └── [id]/page.tsx        # Modal with job details
+  ├── applied/
+  │   └── page.tsx             # List of applied jobs
+/components
+  ├── JobCard.tsx              # Card layout for jobs
+  ├── JobModal.tsx             # Job details + form modal
+  ├── AppliedTag.tsx           # Tag showing "Applied"
+  ├── Layout.tsx               # Common layout
+/utils
+  └── storage.ts               # localStorage utilities
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 Storage Behavior
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### `localStorage` vs `sessionStorage`
 
-## Learn More
+- `localStorage`: Data persists even after closing the tab/browser.
+- `sessionStorage`: Data is cleared when the tab is closed.
 
-To learn more about Next.js, take a look at the following resources:
+> ⚠️ Neither of them expires automatically. You can implement manual expiry as shown below:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✅ Custom Expiry Example
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```ts
+// Set data with expiry
+export const setWithExpiry = (key: string, value: any, ttl: number) => {
+  const now = new Date();
+  const item = {
+    value,
+    expiry: now.getTime() + ttl, // Time to live in ms
+  };
+  localStorage.setItem(key, JSON.stringify(item));
+};
 
-## Deploy on Vercel
+// Get data with expiry check
+export const getWithExpiry = (key: string) => {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) return null;
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  const item = JSON.parse(itemStr);
+  if (new Date().getTime() > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  return item.value;
+};
+```
+
+---
+
+## 🛠️ Getting Started
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/featured-jobs.git
+   cd featured-jobs
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Run the App**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Visit in Browser**
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## 📸 Preview
+
+> _Include screenshots or a short GIF here showing job cards, modal, and applied jobs page._
+
+---
+
+## 🛣 Future Enhancements
+
+- 🌍 Integrate real-time jobs from an API
+- 🔐 Add user authentication (NextAuth or Firebase)
+- 🔍 Implement job filters, search, and categories
+- 📧 Email notification on successful application
+- 📈 Dashboard to track applied jobs
+
+---
+
+## 👩‍💻 About the Developer
+
+**Bhoomi Shakya**  
+🎓 B.Tech in AIML @ GLA University  
+💻 Full-Stack Developer | React | Node.js | MongoDB | MySQL  
+🎨 UI/UX Explorer | Illustrator | AI Enthusiast  
+🏆 450+ LeetCode problems | Hackathon Winner | Built apps with GPT-4, LangChain, Hugging Face  
+
+[Portfolio](#) • [LinkedIn](#) • [GitHub](#)
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. Feel free to use, contribute, and modify.
+
+```
+
+---
+
+Let me know if you'd like me to:
+- Add screenshot placeholders
+- Generate a logo/banner for the top of the README
+- Link to your portfolio/socials directly
+
+I can also convert this into a styled markdown file for GitHub Pages or Notion if you want something visual!
